@@ -36,22 +36,37 @@ class ResultScreen extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             return Card(
-              child: SizedBox(
+              elevation: 5,
+              child: FittedBox(
                 child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      child: SizedBox(
-                        width: 89,
-                        height: 89,
-                        child: Image.network(state.response![0].imageURL!),
-                      ),
-                    ),
-                    Text(
-                      state.response![0].name!,
-                      style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  children: [
+                    Column(
+                      children: <Widget>[
+                        SizedBox(
+                          child: SizedBox(
+                            width: 144,
+                            height: 144,
+                            child: Image.network(state.response![0].imageURL!),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 13,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 13),
+                          child: Text(
+                            state.response![0].name!,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 21,
+                        ),
+                      ],
                     ),
                   ],
                 ),
