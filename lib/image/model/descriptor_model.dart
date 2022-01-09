@@ -4,6 +4,7 @@ class Descriptor {
   String? shortDescription;
   String? longDescription;
   String? id;
+  String? price;
 
   Descriptor({
     this.imageURL,
@@ -11,6 +12,7 @@ class Descriptor {
     this.shortDescription,
     this.longDescription,
     this.id,
+    this.price,
   });
 
   Descriptor copyWith({
@@ -19,6 +21,7 @@ class Descriptor {
     String? shortDescription,
     String? longDescription,
     String? id,
+    String? price,
   }) {
     return Descriptor(
       imageURL: imageURL ?? this.imageURL,
@@ -26,6 +29,7 @@ class Descriptor {
       shortDescription: shortDescription ?? this.shortDescription,
       longDescription: longDescription ?? this.longDescription,
       id: id ?? this.id,
+      price: price ?? this.price,
     );
   }
 
@@ -36,17 +40,18 @@ class Descriptor {
       'shortDescription': shortDescription,
       'longDescription': longDescription,
       'id': id,
+      'price': price,
     };
   }
 
   factory Descriptor.fromMap(Map<String, dynamic> map) {
     return Descriptor(
-      //  map['image'] is '[https://mandi.succinct.in/attachments/view/17592186044546.png]'
       imageURL: map['images'][0],
       name: map['name'],
       shortDescription: map['short_desc'],
       longDescription: map['long_desc'],
       id: map['id'],
+      price: map['listed_value'],
     );
   }
 }

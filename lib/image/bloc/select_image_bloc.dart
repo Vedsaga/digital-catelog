@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:digital_catalog/image/model/descriptor_model.dart';
@@ -100,9 +99,7 @@ class SelectImageCubit extends Cubit<SelectImageState> {
           "file": await MultipartFile.fromFile(
             state.filePath!,
             filename: state.fileName,
-            contentType: MediaType('image', 'png'),
           ),
-          "type": "image/png",
         },
       );
       emit(
@@ -120,8 +117,15 @@ class SelectImageCubit extends Cubit<SelectImageState> {
         ),
       );
       if (response.statusCode == 200 && response.data.isNotEmpty) {
+        // extract the descriptors and price from the response
+
         Map<String, dynamic> content =
-            Map<String, dynamic>.from(response.data[0])['descriptor'];
+            Map<String, dynamic>.from(response.data[0]['descriptor']);
+        Map<String, dynamic> price =
+            Map<String, dynamic>.from(response.data[0]['price']);
+
+        // add the price to the descriptors
+        content.addAll(price);
         descriptors.add(
           Descriptor.fromMap(
             content,
@@ -137,7 +141,7 @@ class SelectImageCubit extends Cubit<SelectImageState> {
       } else {
         emit(
           state.copyWith(
-            status: SelectImageStatus.error,
+            status: SelectImageStatus.emptyResponse,
           ),
         );
       }

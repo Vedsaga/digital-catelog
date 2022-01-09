@@ -60,6 +60,44 @@ class ResultScreen extends StatelessWidget {
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Montserrat',
+                              color: Color.fromARGB(255, 27, 29, 31),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 21,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 13),
+                          child: Text.rich(
+                            TextSpan(
+                              text: 'Price: ',
+                              style: const TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Montserrat',
+                                color: Color.fromARGB(255, 75, 82, 85),
+                              ),
+                              children: [
+                                const TextSpan(
+                                  text: 'INR ',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Montserrat',
+                                    color: Color.fromARGB(255, 43, 195, 255),
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '${state.response![0].price}',
+                                  style: const TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Montserrat',
+                                    color: Color.fromARGB(255, 25, 26, 27),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

@@ -6,6 +6,7 @@ class SelectImageState with EquatableMixin {
   late final String? filePath;
   late final String? fileName;
   late final List<Descriptor>? response;
+
   SelectImageState({
     this.image,
     this.status = SelectImageStatus.initial,
@@ -44,4 +45,5 @@ enum SelectImageStatus {
   processing,
   processed,
   error,
+  emptyResponse,
 }
